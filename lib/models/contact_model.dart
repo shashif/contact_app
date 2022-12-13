@@ -48,6 +48,7 @@ class ContactModel {
     return 'ContactModel{id: $id, name: $name, number: $number, email: $email, address: $address, dob: $dob, gender: $gender, image: $image, company: $company, designation: $designation, website: $website, favourite: $favourite, blood_group: $blood_group}';
   }
 
+  //for create
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       tableContactColNAME: name,

@@ -1,8 +1,11 @@
+import 'package:contact_app/auth_prefs.dart';
 import 'package:contact_app/pages/contact_details.dart';
 import 'package:contact_app/pages/new_contact_page.dart';
 import 'package:contact_app/provider/contactProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'login_page.dart';
 
 class ContactListPage extends StatefulWidget {
   static const String routeName = '/';
@@ -19,6 +22,17 @@ class _ContactListPageState extends State<ContactListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Contact List"),
+        actions: [
+          PopupMenuButton(
+              itemBuilder: (context) => [
+                    PopupMenuItem(
+                      onTap: (){
+                        setLoginStatus(false).then((value) => Navigator.pushReplacementNamed(context, LoginPage.routeName));
+                      },
+                      child: Text('Logout'),
+                    )
+                  ]),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         notchMargin: 10,
@@ -36,9 +50,7 @@ class _ContactListPageState extends State<ContactListPage> {
 
               if (selectedIndex == 0) {
                 provider.getAllContacts();
-              }
-
-              else if (selectedIndex == 1) {
+              } else if (selectedIndex == 1) {
                 provider.getAllFavoriteContact();
               }
             },

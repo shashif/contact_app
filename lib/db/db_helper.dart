@@ -46,18 +46,17 @@ class DBHelper {
         maplList.length, (index) => ContactModel.fromMap(maplList[index]));
   }
 
-
   static Future<List<ContactModel>> getAllFavoriteContact() async {
     final dbobject = await open();
 
-    final maplList =  await dbobject.rawQuery("select * from $tableContact where $tableContactColFAVOURITE=1 order by $tableContactColNAME");
+    final maplList = await dbobject.rawQuery(
+        "select * from $tableContact where $tableContactColFAVOURITE=1 order by $tableContactColNAME");
     // final maplList = await dbobject.query(tableContact, where: '$tableContactColFAVOURITE=?', whereArgs: [1],
     //     orderBy: '$tableContactColNAME asc'); //tableContact is a table name
 
     return List.generate(
         maplList.length, (index) => ContactModel.fromMap(maplList[index]));
   }
-
 
   static Future<int> updateFavourite(int id, int value) async {
     final dbobject = await open();
